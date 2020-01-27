@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Dresser_App</string>
+    <string name="button_label_shirt">Shirt</string>
+    <string name="button_label_pants">Pants</string>
 </resources>

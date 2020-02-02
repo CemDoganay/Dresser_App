@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/new_photo"
-        android:layout_width="360dp"
-        android:layout_height="640dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
         android:contentDescription="@string/new_photo"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/img_ld_btn"

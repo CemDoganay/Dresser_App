@@ -3,7 +3,6 @@ package com.example.dresser_app;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,6 +23,8 @@ import java.text.SimpleDateFormat;
 public class TakePicture extends AppCompatActivity {
 
     private Button loadImage;
+    private ImageView photoView;
+    private TextView msg;
 
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath;
@@ -32,25 +33,21 @@ public class TakePicture extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_takepicture);
-
         loadImage = findViewById(R.id.img_ld_btn);
+        photoView = findViewById(R.id.new_photo);
+        msg = findViewById(R.id.text_message);
 
         dispatchTakePictureIntent();
-
 
         loadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 File imgFile = new File(currentPhotoPath);
                 if (imgFile.exists()) {
-                    //TextView msg = findViewById(R.id.text_message);
                     //msg.setText("Image found at:\n" + currentPhotoPath);
-
                     setPic();
                 }
-
                 else {
-                    TextView msg = findViewById(R.id.text_message);
                     msg.setText("Image could not be located.");
                 }
             }
@@ -66,7 +63,6 @@ public class TakePicture extends AppCompatActivity {
         File image = File.createTempFile(imageFileName, ".jpg", storageDir);
 
         currentPhotoPath = image.getAbsolutePath();
-
         return image;
     }
 
@@ -81,7 +77,6 @@ public class TakePicture extends AppCompatActivity {
             try {
                 photoFile = createImageFile();
             }
-
             catch (IOException ex) {
                 //Error occurred while creating the File
                 Log.e("TakePicture", "dispatchTakePictureIntent() - photoFile error: " + ex);
@@ -90,17 +85,13 @@ public class TakePicture extends AppCompatActivity {
             //Continue only if the file was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this, "com.example.android.fileprovider", photoFile);
-
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
     }
 
     private void setPic() {
-        ImageView photoView = findViewById(R.id.new_photo);
-
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
         photoView.setImageBitmap(bitmap);
     }

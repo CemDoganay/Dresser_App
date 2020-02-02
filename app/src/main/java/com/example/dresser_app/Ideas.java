@@ -18,10 +18,8 @@ public class Ideas extends AppCompatActivity implements AdapterView.OnItemSelect
         setContentView(R.layout.activity_ideas);
 
         Spinner spinner =  findViewById(R.id.spinner_color);
-
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.color_array, android.R.layout.simple_spinner_item);
-
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

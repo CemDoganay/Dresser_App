@@ -2,4 +2,11 @@
     <string name="app_name">Tucked</string>
     <string name="button_label_shirt">Shirt</string>
     <string name="button_label_pants">Pants</string>
+    <string-array name="color_array">
+        <item>RED</item>
+        <item>BLUE</item>
+        <item>GREEN</item>
+        <item>BLACK</item>
+        <item>WHITE</item>
+    </string-array>
 </resources>

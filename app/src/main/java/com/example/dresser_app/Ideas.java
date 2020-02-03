@@ -1,21 +1,26 @@
 package com.example.dresser_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Ideas extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
+    private Button generate;
 
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ideas);
+
+
 
         Spinner spinner =  findViewById(R.id.spinner_color);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -25,6 +30,17 @@ public class Ideas extends AppCompatActivity implements AdapterView.OnItemSelect
 
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+
+        generate = findViewById(R.id.button_generate);
+        generate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -37,4 +53,6 @@ public class Ideas extends AppCompatActivity implements AdapterView.OnItemSelect
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 }

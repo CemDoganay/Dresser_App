@@ -12,7 +12,7 @@
         android:layout_width="188dp"
         android:layout_height="47dp"
         android:layout_marginTop="56dp"
-        android:text="Add a New Cloth"
+        android:text="@string/add_a_new_cloth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,4 +50,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

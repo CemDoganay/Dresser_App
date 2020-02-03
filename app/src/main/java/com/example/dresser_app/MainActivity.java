@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -31,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
        mAdd.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-
-
+               Intent intent = new Intent(MainActivity.this, TakePicture.class);
+               startActivity(intent);
            }
        });
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
            public void onClick(View view) {
                Intent intent = new Intent(MainActivity.this, Ideas.class);
                startActivity(intent);
+
 
            }
        });

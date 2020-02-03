@@ -2,6 +2,7 @@
     <string name="app_name">Tucked</string>
     <string name="button_label_shirt">Shirt</string>
     <string name="button_label_pants">Pants</string>
+
     <string-array name="color_array">
         <item>RED</item>
         <item>BLUE</item>
@@ -9,4 +10,14 @@
         <item>BLACK</item>
         <item>WHITE</item>
     </string-array>
+
+    <string name="add_a_new_cloth">Open Camera</string>
+    <string name="imageFromCamera">Image From Camera</string>
+    <string name="path">Path of Photo</string>
+    <string name="path_of_photo" />
+    <string name="path_to_photo" />
+    <string name="new_photo">The photo that was just taken</string>
+    <string name="text_message" />
+    <string name="img_ld_btn">Load Image</string>
+
 </resources>

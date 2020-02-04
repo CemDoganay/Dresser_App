@@ -1,8 +1,8 @@
-# Dresser_App (Name Not Final)
+# Tucked
 
-This document will briefly describe the core functionalities of the Dresser App.
+This document will briefly describe the core functionalities of Tucked.
 
-This app allows you to dress yourself up virtually. What you need to do is ? easy steps:
+This app allows you to dress yourself up virtually. What you need to do is? easy steps:
   
  Step 1. Take a picture of yourself, or find a picture of yourself.
   

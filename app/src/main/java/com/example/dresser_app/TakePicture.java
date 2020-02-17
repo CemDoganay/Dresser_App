@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 public class TakePicture extends AppCompatActivity {
 
     private Button loadImage;
+    private Button takeImage;
     private ImageView photoView;
     private TextView msg;
 
@@ -34,15 +35,17 @@ public class TakePicture extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_takepicture);
         loadImage = findViewById(R.id.img_ld_btn);
+        takeImage = findViewById(R.id.take_pic_btn);
         photoView = findViewById(R.id.new_photo);
         msg = findViewById(R.id.text_message);
 
         dispatchTakePictureIntent();
 
-        File chkFile = new File (currentPhotoPath);
-        if ((Integer.parseInt(String.valueOf(chkFile.length()/1024))) == 0)
+        File chkFile = new File(currentPhotoPath);
+        if ((Integer.parseInt(String.valueOf(chkFile.length()/1024))) == 0 && chkFile.exists())
             chkFile.delete();
 
+        //Load the taken image
         loadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +61,16 @@ public class TakePicture extends AppCompatActivity {
         });
 
         //Take picture again
+        takeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                File delFile = new File(currentPhotoPath);
+                if (delFile.exists())
+                    delFile.delete();
+
+                recreate();
+            }
+        });
     }
 
     private File createImageFile() throws IOException{

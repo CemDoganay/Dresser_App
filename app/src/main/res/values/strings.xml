@@ -19,5 +19,6 @@
     <string name="new_photo">The photo that was just taken</string>
     <string name="text_message" />
     <string name="img_ld_btn">Load Image</string>
+    <string name="take_pic_button">Take Again</string>
 
 </resources>

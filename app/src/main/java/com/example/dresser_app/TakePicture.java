@@ -39,6 +39,10 @@ public class TakePicture extends AppCompatActivity {
 
         dispatchTakePictureIntent();
 
+        File chkFile = new File (currentPhotoPath);
+        if ((Integer.parseInt(String.valueOf(chkFile.length()/1024))) == 0)
+            chkFile.delete();
+
         loadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +56,8 @@ public class TakePicture extends AppCompatActivity {
                 }
             }
         });
+
+        //Take picture again
     }
 
     private File createImageFile() throws IOException{

@@ -47,5 +47,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_ld_btn" />
 
-
 </android.support.constraint.ConstraintLayout>

@@ -20,7 +20,8 @@
         <activity android:name=".GeneratedCombination"></activity>
         <activity android:name=".ClothingSelection" />
         <activity android:name=".Ideas" />
-        <activity android:name="TakePicture" />
+        <activity android:name=".TakePicture" />
+        <activity android:name=".CropPic" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

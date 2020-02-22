@@ -1,5 +1,6 @@
 package com.example.dresser_app;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,39 +23,80 @@ import java.text.SimpleDateFormat;
 
 public class TakePicture extends AppCompatActivity {
 
+    public static final String CURRENT_PHOTO_URI = "com.example.android.TakePicture.extra.CURRENT_PHOTO_URI";
+
     private Button loadImage;
+    private Button takeImage;
     private ImageView photoView;
     private TextView msg;
 
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath;
+    Uri currentPhotoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_takepicture);
         loadImage = findViewById(R.id.img_ld_btn);
+        takeImage = findViewById(R.id.take_pic_btn);
         photoView = findViewById(R.id.new_photo);
         msg = findViewById(R.id.text_message);
 
-        dispatchTakePictureIntent();
 
+        currentPhotoUri = dispatchTakePictureIntent();
+
+        File chkFile = new File(currentPhotoPath);
+        if ((Integer.parseInt(String.valueOf(chkFile.length()/1024))) == 0 && chkFile.exists())
+            chkFile.delete();
+
+        //Load the taken image
         loadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File imgFile = new File(currentPhotoPath);
-                if (imgFile.exists()) {
-                    //msg.setText("Image found at:\n" + currentPhotoPath);
-                    setPic();
+                if (loadImage.getText().equals("Load Image")) {
+                    File imgFile = new File(currentPhotoPath);
+                    if (imgFile.exists()) {
+                        //msg.setText("Image found at:\n" + currentPhotoPath);
+                        setPic();
+                        loadImage.setText("Crop Image");
+                    }
+
+                    else {
+                        msg.setText("Image could not be located.");
+                    }
                 }
-                else {
-                    msg.setText("Image could not be located.");
+
+                else if (loadImage.getText() == "Crop Image") {
+                    //Crop intent
+                    if (currentPhotoUri != null) {
+                        Intent cropIntent = new Intent(TakePicture.this, CropPic.class);
+                        cropIntent.putExtra(CURRENT_PHOTO_URI, currentPhotoUri.toString());
+                        startActivity(cropIntent);
+                    }
+                }
+            }
+        });
+
+        //Take picture again
+        takeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    File delFile = new File(currentPhotoPath);
+                    if (delFile.exists())
+                        delFile.delete();
+
+                    recreate();
+                }
+                catch (Exception ex) {
+                    Log.e("TakeAgain", "onClick(View view) - intentRecreate error: " + ex);
                 }
             }
         });
     }
 
-    private File createImageFile() throws IOException{
+    private File createImageFile() throws IOException {
         //Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -66,7 +108,7 @@ public class TakePicture extends AppCompatActivity {
         return image;
     }
 
-    private void dispatchTakePictureIntent(){
+    private Uri dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         //Ensure that there's a camera activity to handle the intent
@@ -87,8 +129,12 @@ public class TakePicture extends AppCompatActivity {
                 Uri photoURI = FileProvider.getUriForFile(this, "com.example.android.fileprovider", photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+
+                return photoURI;
             }
         }
+
+        return null;
     }
 
     private void setPic() {

@@ -34,6 +34,17 @@
         android:layout_marginBottom="32dp"
         android:text="@string/img_ld_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/take_pic_btn"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/take_pic_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/take_pic_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_ld_btn" />
+
 </android.support.constraint.ConstraintLayout>

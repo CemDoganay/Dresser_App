@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -19,7 +20,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 public class MainActivity extends AppCompatActivity {
 
     private Button mAdd,mCreate,mIdeas;
-
+    DatabaseHelper mydb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
        mAdd = findViewById(R.id.Add_button);
        mCreate = findViewById(R.id.Create_button);
        mIdeas = findViewById(R.id.ideas_button);
+       mydb = new DatabaseHelper(this);
 
        mAdd.setOnClickListener(new View.OnClickListener() {
            @Override

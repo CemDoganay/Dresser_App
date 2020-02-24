@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "clothes.db";
     public static final String TABLE_NAME = "clothes_table.db";
     public static final String COL_1 = "ID";
-    public static final String COL_2 = "ADRESS";
+    public static final String COL_2 = "ADDRESS";
     public static final String COL_3 = "TYPE";
     public static final String COL_4 = "COLOR";
 
@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-     db.execSQL("create table " +  TABLE_NAME + " (ID STRING PRIMARY KEY AUTOINCREMENT, ADRESS TEXT, TPYE TEXT, COLOR TEXT)");
+     db.execSQL("create table " +  TABLE_NAME + " (ID STRING PRIMARY KEY AUTOINCREMENT, ADDRESS TEXT, TYPE TEXT, COLOR TEXT)");
     }
 
     @Override
@@ -32,10 +32,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }
 
-    public boolean insertData(String adress, String type, String color) {
+    public boolean insertData(String address, String type, String color) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues  contentValues = new ContentValues();
-        contentValues.put(COL_2, adress);
+        contentValues.put(COL_2, address);
         contentValues.put(COL_3, type);
         contentValues.put(COL_4, color);
         long result =  db.insert(TABLE_NAME, null, contentValues);

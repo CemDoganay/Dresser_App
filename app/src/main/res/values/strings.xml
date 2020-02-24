@@ -7,8 +7,11 @@
         <item>RED</item>
         <item>BLUE</item>
         <item>GREEN</item>
-        <item>BLACK</item>
+        <item>ORANGE</item>
+        <item>PURPLE</item>
         <item>WHITE</item>
+        <item>BLACK</item>
+        <item>GREY</item>
     </string-array>
 
     <string name="add_a_new_cloth">Open Camera</string>
@@ -20,5 +23,8 @@
     <string name="text_message" />
     <string name="img_ld_btn">Load Image</string>
     <string name="take_pic_button">Take Again</string>
+    <string name="button_create_a_combination">Create a Combination</string>
+    <string name="button_give_me_ideas">Give Me Ideas</string>
+    <string name="button_generate">Generate</string>
 
 </resources>

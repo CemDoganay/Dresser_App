@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+//import androidx.appcompat.app.AppCompatActivity;
+
 
 public class CropPic extends AppCompatActivity {
 
@@ -45,8 +47,6 @@ public class CropPic extends AppCompatActivity {
     }
 
 
-    //https://stackoverflow.com/questions/15228812/crop-image-in-android
-    //This cropping method does not work; check out the "Android-Image-Cropper" library to see if that works
     private void performCrop (Uri picUri) {
         try {
             Intent cropIntent = new Intent("com.android.camera.action.CROP");
@@ -62,8 +62,8 @@ public class CropPic extends AppCompatActivity {
             cropIntent.putExtra("aspectY", 1);
 
             //Indicate output X and Y
-            cropIntent.putExtra("outputX", 128);
-            cropIntent.putExtra("outputY", 128);
+            cropIntent.putExtra("outputX", 300);
+            cropIntent.putExtra("outputY", 300);
 
             //Retrieve data on return
             cropIntent.putExtra("return-data", true);
@@ -74,7 +74,7 @@ public class CropPic extends AppCompatActivity {
 
         //Respond to users whose devices do not support the crop action
         catch (ActivityNotFoundException anfe) {
-            String errorMessage = "Whoops - your device doesn't support the crop sction!";
+            String errorMessage = "Whoops - your device doesn't support the crop function!";
             Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
             toast.show();
         }

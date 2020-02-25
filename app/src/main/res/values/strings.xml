@@ -26,5 +26,8 @@
     <string name="img_ld_btn">Load Image</string>
     <string name="take_pic_button">Take Again</string>
     <string name="next">NEXT</string>
+    <string name="create_a_combination">Create a Combination</string>
+    <string name="give_me_ideas">Give Me Ideas</string>
+    <string name="welcome_to_tucked">Welcome to Tucked!</string>
 
 </resources>

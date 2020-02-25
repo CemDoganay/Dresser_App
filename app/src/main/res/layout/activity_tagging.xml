@@ -11,40 +11,42 @@
         android:layout_width="183dp"
         android:layout_height="26dp"
         app:layout_constraintBottom_toTopOf="@+id/text_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_cloth"
-        app:layout_constraintVertical_bias="0.621"
-        tools:layout_editor_absoluteX="114dp" />
+        app:layout_constraintVertical_bias="0.625" />
 
     <ImageView
         android:id="@+id/imageView_cloth"
-        android:layout_width="343dp"
-        android:layout_height="419dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="257dp"
+        android:layout_height="315dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038"
+        app:layout_constraintVertical_bias="0.046"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Spinner
         android:id="@+id/spinner_type"
         android:layout_width="183dp"
         android:layout_height="26dp"
-        app:layout_constraintBottom_toTopOf="@+id/ADD"
+        app:layout_constraintBottom_toTopOf="@+id/button_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_cloth"
-        app:layout_constraintVertical_bias="0.812"
-        tools:layout_editor_absoluteX="114dp" />
+        app:layout_constraintVertical_bias="0.861" />
 
     <TextView
-        android:id="@+id/Color:"
+        android:id="@+id/text_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Color:"
         app:layout_constraintBottom_toTopOf="@+id/spinner_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_cloth"
-        app:layout_constraintVertical_bias="0.588"
-        tools:layout_editor_absoluteX="187dp" />
+        app:layout_constraintVertical_bias="0.807" />
 
     <TextView
         android:id="@+id/text_type"
@@ -52,18 +54,21 @@
         android:layout_height="wrap_content"
         android:text="Type:"
         app:layout_constraintBottom_toTopOf="@+id/spinner_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_cloth"
-        app:layout_constraintVertical_bias="0.881"
-        tools:layout_editor_absoluteX="188dp" />
+        app:layout_constraintVertical_bias="0.95" />
 
     <Button
-        android:id="@+id/ADD"
+        android:id="@+id/button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
-        android:text="Button"
+        android:text="ADD"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_cloth"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="161dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.961" />
 </android.support.constraint.ConstraintLayout>

@@ -9,8 +9,8 @@ import android.support.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "clothes.db";
-    public static final String TABLE_NAME = "clothes_table.db";
-    public static final String COL_1 = "ID";
+    public static final String TABLE_NAME = "clothes_table";
+    public static final String COL_1 = "CLOTH_ID";
     public static final String COL_2 = "ADDRESS";
     public static final String COL_3 = "TYPE";
     public static final String COL_4 = "COLOR";
@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-     db.execSQL("create table " +  TABLE_NAME + " (ID STRING PRIMARY KEY AUTOINCREMENT, ADDRESS TEXT, TYPE TEXT, COLOR TEXT)");
+     db.execSQL("create table " +  TABLE_NAME + " (CLOTH_ID INTEGER PRIMARY KEY AUTOINCREMENT, ADDRESS TEXT, TYPE TEXT, COLOR TEXT)");
     }
 
     @Override

@@ -11,6 +11,11 @@
         <item>WHITE</item>
     </string-array>
 
+    <string-array name="type_array">
+        <item>TOP</item>
+        <item>BOTTOM</item>
+    </string-array>
+
     <string name="add_a_new_cloth">Open Camera</string>
     <string name="imageFromCamera">Image From Camera</string>
     <string name="path">Path of Photo</string>
@@ -20,5 +25,6 @@
     <string name="text_message" />
     <string name="img_ld_btn">Load Image</string>
     <string name="take_pic_button">Take Again</string>
+    <string name="next">NEXT</string>
 
 </resources>

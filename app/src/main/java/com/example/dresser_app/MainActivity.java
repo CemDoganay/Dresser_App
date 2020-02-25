@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
        mAdd = findViewById(R.id.Add_button);
        mCreate = findViewById(R.id.Create_button);
        mIdeas = findViewById(R.id.ideas_button);
+
 
        mAdd.setOnClickListener(new View.OnClickListener() {
            @Override

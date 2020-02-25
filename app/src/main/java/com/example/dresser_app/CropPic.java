@@ -3,9 +3,12 @@ package com.example.dresser_app;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 public class CropPic extends AppCompatActivity {
 
+    private Button next;
     private ImageView photoView;
 
     static final int PIC_CROP = 1;
@@ -22,13 +26,24 @@ public class CropPic extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_picture);
+        next = findViewById(R.id.button2);
+        photoView = findViewById(R.id.crop_photo);
 
         Intent takePictureIntent = getIntent();
         Uri cropUri = Uri.parse(takePictureIntent.getStringExtra(TakePicture.CURRENT_PHOTO_URI));
 
-        photoView = findViewById(R.id.crop_photo);
-
         performCrop(cropUri);
+
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CropPic.this, Tagging.class);
+                intent.putExtra(TakePicture.CURRENT_PHOTO_PATH, getIntent().getStringExtra(TakePicture.CURRENT_PHOTO_PATH));
+                intent.putExtra(TakePicture.CURRENT_PHOTO_URI, getIntent().getStringExtra(TakePicture.CURRENT_PHOTO_URI));
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -63,6 +78,9 @@ public class CropPic extends AppCompatActivity {
             Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
             toast.show();
         }
+
+        Bitmap bitmap = BitmapFactory.decodeFile(getIntent().getStringExtra(TakePicture.CURRENT_PHOTO_PATH));
+        photoView.setImageBitmap(bitmap);
     }
 
     @Override

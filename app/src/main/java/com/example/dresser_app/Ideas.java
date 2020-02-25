@@ -32,13 +32,13 @@ public class Ideas extends AppCompatActivity implements AdapterView.OnItemSelect
         spinner.setOnItemSelectedListener(this);
 
 
+
         generate = findViewById(R.id.button_generate);
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
                 startActivity(intent);
-
             }
         });
     }

@@ -45,7 +45,7 @@ public class Ideas_Test {
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                2),
+                                1),
                         isDisplayed()));
         appCompatButton.perform(click());
 

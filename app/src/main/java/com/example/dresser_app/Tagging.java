@@ -17,7 +17,10 @@ public class Tagging extends AppCompatActivity implements AdapterView.OnItemSele
 
     private Button add;
     private ImageView image;
+    private Spinner spinner_color;
+    private Spinner spinner_type;
     DatabaseHelper mydb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +34,8 @@ public class Tagging extends AppCompatActivity implements AdapterView.OnItemSele
         final Bitmap bitmap = BitmapFactory.decodeFile(getIntent().getStringExtra(TakePicture.CURRENT_PHOTO_PATH));
         image.setImageBitmap(bitmap);
 
-        Spinner spinner_color =  findViewById(R.id.spinner_color);
-        Spinner spinner_type =  findViewById(R.id.spinner_type);
+        spinner_color =  findViewById(R.id.spinner_color);
+        spinner_type =  findViewById(R.id.spinner_type);
 
         ArrayAdapter<CharSequence> adapter_color = ArrayAdapter.createFromResource(this,
                 R.array.color_array, android.R.layout.simple_spinner_item);
@@ -48,13 +51,13 @@ public class Tagging extends AppCompatActivity implements AdapterView.OnItemSele
         spinner_color.setOnItemSelectedListener(this);
         spinner_type.setOnItemSelectedListener(this);
 
-        final String color = spinner_color.getSelectedItem().toString();
-        final String type = spinner_type.getSelectedItem().toString();
-        final String address = getIntent().getStringExtra(TakePicture.CURRENT_PHOTO_URI);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String address = getIntent().getStringExtra(TakePicture.CURRENT_PHOTO_URI);
+                String type = spinner_type.getSelectedItem().toString();
+                String color = spinner_color.getSelectedItem().toString();
 
                 boolean bool = mydb.insertData(address, type, color);
 

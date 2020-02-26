@@ -10,3 +10,7 @@ android:
   
   #Generic line for extra components - run the command "skdmanager --list" in Android Studio to get exact component names
   - extra
+
+  #These two lines exist in order to get around the permission error
+before_install:
+  - chmod +x gradlew

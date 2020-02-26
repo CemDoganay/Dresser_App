@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class Tagging extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Button add;
@@ -48,15 +50,18 @@ public class Tagging extends AppCompatActivity implements AdapterView.OnItemSele
         spinner_color.setOnItemSelectedListener(this);
         spinner_type.setOnItemSelectedListener(this);
 
-        final String color = spinner_color.getSelectedItem().toString();
-        final String type = spinner_type.getSelectedItem().toString();
+        String color = spinner_color.getSelectedItem().toString();
+        String type = spinner_type.getSelectedItem().toString();
+        final ArrayList<String> color_type_str = new ArrayList<String>();
+        color_type_str.add(color);
+        color_type_str.add(type);
         final String address = getIntent().getStringExtra(TakePicture.CURRENT_PHOTO_URI);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                boolean bool = mydb.insertData(address, type, color);
+                boolean bool = mydb.insertData(address, color_type_str);
 
                 if(bool == false)
                 {

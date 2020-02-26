@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "clothes.db";
     public static final String TABLE_NAME = "clothes_table";
@@ -32,9 +34,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }
 
-    public boolean insertData(String address, String type, String color) {
+    public boolean insertData(String address, ArrayList<String> color_type_str) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+
+        String color =  color_type_str.get(0);
+        String type =  color_type_str.get(1);
+
         contentValues.put(COL_2, address);
         contentValues.put(COL_3, type);
         contentValues.put(COL_4, color);

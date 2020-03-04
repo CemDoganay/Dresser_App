@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4DB6AC"
+    android:background="@color/colorBackground"
     tools:context=".Ideas">
 
     <Spinner
@@ -61,6 +61,16 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="DRESS ME" />
+        app:title="DRESS ME">
+
+        <TextView
+            android:id="@+id/dressme_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Dress Me"
+            android:textSize="30dp" />
+
+    <android.support.v7.widget.Toolbar/>
 
 </android.support.constraint.ConstraintLayout>

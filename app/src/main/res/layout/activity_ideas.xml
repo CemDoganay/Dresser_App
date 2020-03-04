@@ -7,7 +7,7 @@
     android:background="#4DB6AC"
     tools:context=".Ideas">
 
-    <Spinner
+    <!--Spinner
         android:id="@+id/spinner_color"
         android:layout_width="198dp"
         android:layout_height="28dp"
@@ -16,9 +16,9 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_color"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.111" /-->
 
-    <TextView
+    <!--TextView
         android:id="@+id/text_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,30 +28,49 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.432" />
+        app:layout_constraintVertical_bias="0.432" /-->
 
-    <TextView
+    <!--TextView
         android:id="@+id/text_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to Auto Selection"
+        android:text="@string/welcome_ideas"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.633" />
+        app:layout_constraintVertical_bias="0.633" /-->
 
     <Button
-        android:id="@+id/button_generate"
+        android:id="@+id/button_next_ideas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate"
+        android:layout_marginBottom="50dp"
+        android:text="@string/go_to_combo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_gallery"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="@string/ideas_gallery"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toEndOf="@id/button_next_ideas" />
+
+    <ImageView
+        android:id="@+id/gallery_photo"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:contentDescription="@string/gallery_photo"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/button_next_ideas"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_color"
-        app:layout_constraintVertical_bias="0.258" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

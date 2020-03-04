@@ -26,5 +26,9 @@
     <string name="button_create_a_combination">OUTFITS</string>
     <string name="button_give_me_ideas">DRESS ME</string>
     <string name="button_generate">Generate</string>
+    <string name="menu_name">Tucked</string>
+    <string name="button_dress_me">Dress Me</string>
+    <string name="button_next">Next</string>
+    <string name="menu_dress_me">Dress Me</string>
 
 </resources>

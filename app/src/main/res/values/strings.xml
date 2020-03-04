@@ -14,7 +14,7 @@
         <item>GREY</item>
     </string-array>
 
-    <string name="add_a_new_cloth">Open Camera</string>
+    <string name="add_a_new_cloth">WARDROBE</string>
     <string name="imageFromCamera">Image From Camera</string>
     <string name="path">Path of Photo</string>
     <string name="path_of_photo" />
@@ -23,8 +23,8 @@
     <string name="text_message" />
     <string name="img_ld_btn">Load Image</string>
     <string name="take_pic_button">Take Again</string>
-    <string name="button_create_a_combination">Create a Combination</string>
-    <string name="button_give_me_ideas">Give Me Ideas</string>
+    <string name="button_create_a_combination">OUTFITS</string>
+    <string name="button_give_me_ideas">DRESS ME</string>
     <string name="button_generate">Generate</string>
 
 </resources>

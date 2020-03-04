@@ -11,11 +11,10 @@
         android:id="@+id/Add_button"
         android:layout_width="188dp"
         android:layout_height="47dp"
-        android:layout_marginTop="56dp"
         android:background="#9370DB"
         android:text="@string/add_a_new_cloth"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ideas_button" />
 
@@ -25,33 +24,41 @@
         android:layout_height="wrap_content"
         android:background="#9370DB"
         android:text="@string/button_create_a_combination"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/Add_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Add_button" />
+        app:layout_constraintTop_toBottomOf="@+id/ideas_button" />
 
     <Button
         android:id="@+id/ideas_button"
         android:layout_width="188dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:background="#9370DB"
         android:text="@string/button_give_me_ideas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616" />
+        app:layout_constraintTop_toBottomOf="@+id/menu_page"
+        app:layout_constraintVertical_bias="0.25" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/menu_page"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:title="TUCKED" />
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Tucked"
+            android:textSize="30dp" />
+
+    </android.support.support.v7.widget.Toolbar>
 
 
 </android.support.constraint.ConstraintLayout>

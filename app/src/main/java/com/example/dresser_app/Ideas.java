@@ -5,9 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Ideas extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -22,17 +20,7 @@ public class Ideas extends AppCompatActivity implements AdapterView.OnItemSelect
 
 
 
-        Spinner spinner =  findViewById(R.id.spinner_color);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.color_array, android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
-
-        generate = findViewById(R.id.button_generate);
+        generate = findViewById(R.id.button_dressMe);
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

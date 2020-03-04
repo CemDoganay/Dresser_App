@@ -18,7 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".GeneratedCombination"></activity>
-        <activity android:name=".ClothingSelection" />
         <activity android:name=".Ideas" />
         <activity android:name=".TakePicture" />
         <activity android:name=".CropPic" />

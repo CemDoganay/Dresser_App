@@ -6,31 +6,58 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-public class Ideas extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class Ideas extends AppCompatActivity /*implements AdapterView.OnItemSelectedListener*/{
 
-    private Button generate;
+    private Button next, gallery;
+    private ImageView photoFromGallery;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ideas);
 
+        next = findViewById(R.id.button_next_ideas);
+        gallery = findViewById(R.id.button_gallery);
+        photoFromGallery = findViewById(R.id.gallery_photo);
+
+        //generate = findViewById(R.id.button_dressMe);
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
+                startActivity(intent);
+            }
+        });
+
+        /*
+        Spinner spinner =  findViewById(R.id.spinner_color);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.color_array, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
 
-        generate = findViewById(R.id.button_dressMe);
+
+        generate = findViewById(R.id.button_generate);
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
                 startActivity(intent);
-
             }
         });
+        */
     }
 
+    /*
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
@@ -42,5 +69,5 @@ public class Ideas extends AppCompatActivity implements AdapterView.OnItemSelect
 
     }
 
-
+     */
 }

@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 
 public class TakePicture extends AppCompatActivity {
 
+    public static final String CURRENT_PHOTO_PATH = "com.example.android.TakePicture.extra.CURRENT_PHOTO_PATH";
     public static final String CURRENT_PHOTO_URI = "com.example.android.TakePicture.extra.CURRENT_PHOTO_URI";
 
     private Button loadImage;
@@ -71,6 +72,7 @@ public class TakePicture extends AppCompatActivity {
                     //Crop intent
                     if (currentPhotoUri != null) {
                         Intent cropIntent = new Intent(TakePicture.this, CropPic.class);
+                        cropIntent.putExtra(CURRENT_PHOTO_PATH, currentPhotoPath);
                         cropIntent.putExtra(CURRENT_PHOTO_URI, currentPhotoUri.toString());
                         startActivity(cropIntent);
                     }

@@ -8,36 +8,43 @@
     tools:context=".GeneratedCombination">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/topImage"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/topPicContent"
+        app:layout_constraintBottom_toTopOf="@id/botImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.103"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <ImageView
+        android:id="@+id/botImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:contentDescription="@string/botPicContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topImage"
+        tools:srcCompat="@tools:sample/avatars" />
     <Button
-        android:id="@+id/button_tryagain"
+        android:id="@+id/button_tryAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Try Again"
+        android:layout_marginBottom="50dp"
+        android:text="@string/combo_again"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toEndOf="@+id/button_nice" />
+
+    <Button
+        android:id="@+id/button_nice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="@string/nice_combo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.365" />
+        app:layout_constraintEnd_toStartOf="@+id/button_tryAgain" />
 </android.support.constraint.ConstraintLayout>

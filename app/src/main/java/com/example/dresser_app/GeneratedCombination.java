@@ -1,7 +1,10 @@
 package com.example.dresser_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class GeneratedCombination extends AppCompatActivity {
 
@@ -41,9 +44,35 @@ public class GeneratedCombination extends AppCompatActivity {
             //output that no clothing were matched
         }
     }
+
+
+    private Button niceButton, tryAgain;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generated_combination);
+
+        niceButton = findViewById(R.id.button_nice);
+        tryAgain = findViewById(R.id.button_tryAgain);
+
+
+
+        niceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
+                //startActivity(intent);
+            }
+        });
+
+        tryAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
+                //startActivity(intent);
+            }
+        });
     }
 }

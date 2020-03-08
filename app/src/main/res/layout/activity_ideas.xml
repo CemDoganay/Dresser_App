@@ -13,7 +13,7 @@
         android:layout_height="90dp"
         android:background="@color/colorAccent"
         android:text="@string/button_dress_me"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/menu_dress_me"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
     </android.support.v7.widget.Toolbar>
 

@@ -21,7 +21,7 @@ public class Ideas extends AppCompatActivity /*implements AdapterView.OnItemSele
         setContentView(R.layout.activity_ideas);
 
         next = findViewById(R.id.button_next_ideas);
-        gallery = findViewById(R.id.button_gallery);
+        gallery = findViewById(R.id.button_dressMe);
         photoFromGallery = findViewById(R.id.gallery_photo);
 
         //generate = findViewById(R.id.button_dressMe);

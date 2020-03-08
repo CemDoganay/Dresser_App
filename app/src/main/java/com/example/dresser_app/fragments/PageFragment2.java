@@ -23,4 +23,4 @@ public class PageFragment2 extends Fragment {
         return rootView;
     }
 }
-}
+

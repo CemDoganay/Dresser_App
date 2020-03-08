@@ -8,16 +8,28 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.dresser_app.fragments.PageFragment1;
+import com.example.dresser_app.fragments.PageFragment2;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ViewPager pager;
+    private PagerAdapter pagerAdapter;
 
     private Button mAdd,mCreate,mIdeas;
     DatabaseHelper mydb;
@@ -55,5 +67,14 @@ public class MainActivity extends AppCompatActivity {
 
            }
        });
+
+       List<Fragment> list = new ArrayList<>();
+       list.add(new PageFragment1());
+       list.add(new PageFragment2());
+
+       pager = findViewById(R.id.pager);
+       pagerAdapter = new SlidePagerAdapter(getSupportFragmentManager(), list);
+
+       pager.setAdapter(pagerAdapter);
     }
 }

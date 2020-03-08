@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
        mAdd = findViewById(R.id.Add_button);
        mCreate = findViewById(R.id.Create_button);
@@ -51,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
            public void onClick(View view) {
                Intent intent = new Intent(MainActivity.this, Ideas.class);
                startActivity(intent);
-
            }
        });
     }

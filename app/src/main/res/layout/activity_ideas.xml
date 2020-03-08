@@ -4,43 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4DB6AC"
+    android:background="@color/colorBackground"
     tools:context=".Ideas">
 
-    <!--Spinner
-        android:id="@+id/spinner_color"
-        android:layout_width="198dp"
-        android:layout_height="28dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_color"
-        app:layout_constraintVertical_bias="0.111" /-->
-
-    <!--TextView
-        android:id="@+id/text_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Color Preference:"
+    <Button
+        android:id="@+id/button_dressMe"
+        android:layout_width="188dp"
+        android:layout_height="90dp"
+        android:background="@color/colorAccent"
+        android:text="@string/button_dress_me"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.432" /-->
+        app:layout_constraintTop_toBottomOf="@+id/dressme_page"
+        app:layout_constraintVertical_bias="0.35000002" />
 
-    <!--TextView
-        android:id="@+id/text_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_ideas"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/text_color"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/dressme_page"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.633" /-->
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dressme_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/menu_dress_me"
+            android:textSize="30dp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="88dp"
+        android:layout_height="36dp"
+        android:background="@color/colorAccent"
+        android:text="@string/button_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_dressMe" />
 
     <Button
         android:id="@+id/button_next_ideas"

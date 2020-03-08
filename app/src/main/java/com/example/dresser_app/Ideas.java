@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -25,6 +24,7 @@ public class Ideas extends AppCompatActivity /*implements AdapterView.OnItemSele
         gallery = findViewById(R.id.button_gallery);
         photoFromGallery = findViewById(R.id.gallery_photo);
 
+        //generate = findViewById(R.id.button_dressMe);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,9 +55,6 @@ public class Ideas extends AppCompatActivity /*implements AdapterView.OnItemSele
             }
         });
         */
-
-
-        //
     }
 
     /*

@@ -7,21 +7,32 @@
         <item>RED</item>
         <item>BLUE</item>
         <item>GREEN</item>
-        <item>BLACK</item>
+        <item>ORANGE</item>
+        <item>PURPLE</item>
         <item>WHITE</item>
+        <item>BLACK</item>
+        <item>GREY</item>
     </string-array>
-
     <string-array name="type_array">
         <item>TOP</item>
         <item>BOTTOM</item>
     </string-array>
 
-    <string name="add_a_new_cloth">Open Camera</string>
+    <string name="add_a_new_cloth">WARDROBE</string>
+    <string name="imageFromCamera">Image From Camera</string>
+    <string name="path">Path of Photo</string>
     <string name="path_of_photo" />
     <string name="path_to_photo" />
     <string name="text_message" />
     <string name="img_ld_btn">Load Image</string>
     <string name="take_pic_button">Take Again</string>
+    <string name="button_create_a_combination">OUTFITS</string>
+    <string name="button_give_me_ideas">DRESS ME</string>
+    <string name="button_generate">Generate</string>
+    <string name="menu_name">Tucked</string>
+    <string name="button_dress_me">Dress Me</string>
+    <string name="button_next">Next</string>
+    <string name="menu_dress_me">Dress Me</string>
     <string name="next">NEXT</string>
     <string name="create_a_combination">Create a Combination</string>
     <string name="give_me_ideas">Give Me Ideas</string>
@@ -31,11 +42,8 @@
     <string name="ideas_gallery">GALLERY</string>
     <string name="combo_again">Try Again</string>
     <string name="nice_combo">Nice</string>
-
     <string name="gallery_photo">Selected photo from gallery</string>
     <string name="new_photo">The photo that was just taken</string>
-    <string name="imageFromCamera">Image From Camera</string>
-    <string name="path">Path of Photo</string>
     <string name="topPicContent">Picture of top cloth</string>
     <string name="botPicContent">Picture of bottom cloth</string>
 

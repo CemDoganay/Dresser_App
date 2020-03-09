@@ -46,5 +46,8 @@
     <string name="new_photo">The photo that was just taken</string>
     <string name="topPicContent">Picture of top cloth</string>
     <string name="botPicContent">Picture of bottom cloth</string>
+    <string name="button_open">Open</string>
+    <string name="button_add">Add</string>
+    <string name="button_remove">Remove</string>
 
 </resources>

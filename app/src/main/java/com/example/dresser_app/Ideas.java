@@ -1,6 +1,9 @@
 package com.example.dresser_app;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +13,25 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.dresser_app.fragments.DressMeFragment;
+import com.example.dresser_app.fragments.WardrobeFragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ideas extends AppCompatActivity /*implements AdapterView.OnItemSelectedListener*/{
 
     private Button next, gallery;
     private ImageView photoFromGallery;
+    private ViewPager pager;
+    private PagerAdapter pagerAdapter;
+
+    List<Fragment> list = new ArrayList<>();
+    list.add(new DressMeFragment());
+    list.add(new WardrobeFragment());
+
+    pager = findViewById(R.id.pager);
+    pagerAdapter = new SlidePageAdapter(getSupportFragmentManager(), list);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

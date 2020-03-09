@@ -1,0 +1,16 @@
+language: android
+dist: trusty
+android:
+  components:
+  #The BuildTools version used by the project
+  - build-tools-29.0.1
+  
+  #The SDK version used to compile the project
+  - android-28
+  
+  #Generic line for extra components - run the command "skdmanager --list" in Android Studio to get exact component names
+  - extra
+
+  #These two lines exist in order to get around the permission error
+before_install:
+  - chmod +x gradlew

@@ -21,7 +21,7 @@ public class ScreenSliderPagerActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstancesState) {
         super.onCreate(savedInstancesState);
-        setContentView(R.layout.activity_ideas);
+        setContentView(R.layout.activity_screen_slide);
 
         mPager = (ViewPager) findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());

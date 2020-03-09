@@ -1,23 +1,11 @@
 package com.example.dresser_app;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import com.example.dresser_app.fragments.DressMeFragment;
-import com.example.dresser_app.fragments.WardrobeFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Ideas extends AppCompatActivity /*implements AdapterView.OnItemSelectedListener*/{
 

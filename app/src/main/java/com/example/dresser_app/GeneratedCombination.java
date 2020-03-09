@@ -1,10 +1,18 @@
 package com.example.dresser_app;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class GeneratedCombination extends AppCompatActivity {
 
@@ -47,7 +55,11 @@ public class GeneratedCombination extends AppCompatActivity {
 
 
     private Button niceButton, tryAgain;
+    private ImageView chosenPhoto;
+    private Cursor picCurosr;
 
+    //https://www.journaldev.com/9438/android-sqlite-database-example-tutorial
+    //SQLiteDatabase theDB = this.getReadableDatabase();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +69,12 @@ public class GeneratedCombination extends AppCompatActivity {
         niceButton = findViewById(R.id.button_nice);
         tryAgain = findViewById(R.id.button_tryAgain);
 
+        String picName = getIntent().getStringExtra(Ideas.CURRENT_PHOTO_NAME);
 
+        //picCurosr = .query(DatabaseHelper.TABLE_NAME, );
+
+        TextView tv = findViewById(R.id.URI_VIEW);
+        tv.setText(picCurosr.toString());
 
         niceButton.setOnClickListener(new View.OnClickListener() {
             @Override

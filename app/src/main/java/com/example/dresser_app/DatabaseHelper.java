@@ -19,7 +19,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
-
     }
 
     @Override
@@ -43,13 +42,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         else
             return true;
-
     }
 
     public Cursor searchColor(String color, String type) //work in progress
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT ADDRESS FROM "+ TABLE_NAME+ " WHERE "+ COL_4 + " LIKE '%"+color+"%' AND " + COL_3 + " LIKE " + type;
+        String query = "SELECT " + COL_2 + " FROM "+ TABLE_NAME+ " WHERE "+ COL_4 + " LIKE '%"+color+"%' AND " + COL_3 + " LIKE " + type;
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+
+    public Cursor getPicInfo(String picName)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + COL_3 +", " + COL_4 + " FROM "+ TABLE_NAME + " WHERE "+ COL_2 + " = " + picName;
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }

@@ -19,7 +19,7 @@ public class Tagging extends AppCompatActivity implements AdapterView.OnItemSele
     private ImageView image;
     private Spinner spinner_color;
     private Spinner spinner_type;
-    DatabaseHelper mydb;
+    private DatabaseHelper mydb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,9 @@ public class Tagging extends AppCompatActivity implements AdapterView.OnItemSele
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String address = getIntent().getStringExtra(TakePicture.CURRENT_PHOTO_URI);
+                String temp = getIntent().getStringExtra(TakePicture.CURRENT_PHOTO_URI);
+
+                String address = temp.substring(temp.indexOf("P") + 9);
                 String type = spinner_type.getSelectedItem().toString();
                 String color = spinner_color.getSelectedItem().toString();
 

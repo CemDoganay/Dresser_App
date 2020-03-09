@@ -19,8 +19,11 @@ import java.io.File;
 
 public class Ideas extends AppCompatActivity{
 
+    public static final String CURRENT_PHOTO_NAME = "com.example.android.Ideas.extra.CURRENT_PHOTO_NAME";
+
     private Button next, gallery;
     private ImageView photoFromGallery;
+    private String nameOfPic;
 
     static final int REQUEST_GALLERY = 1;
 
@@ -50,6 +53,7 @@ public class Ideas extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
+                intent.putExtra(CURRENT_PHOTO_NAME, nameOfPic);
                 startActivity(intent);
             }
         });
@@ -63,6 +67,9 @@ public class Ideas extends AppCompatActivity{
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData(); //This includes the path and the name of the picture
                     photoFromGallery.setImageURI(selectedImage);
+
+                    String temp = selectedImage.getPath();
+                    nameOfPic = temp.substring(temp.indexOf("P") + 9);
                     break;
             }
     }

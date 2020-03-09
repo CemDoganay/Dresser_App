@@ -21,17 +21,9 @@ import java.util.List;
 
 public class Ideas extends AppCompatActivity /*implements AdapterView.OnItemSelectedListener*/{
 
+
     private Button next, gallery;
     private ImageView photoFromGallery;
-    private ViewPager pager;
-    private PagerAdapter pagerAdapter;
-
-    List<Fragment> list = new ArrayList<>();
-    list.add(new DressMeFragment());
-    list.add(new WardrobeFragment());
-
-    pager = findViewById(R.id.pager);
-    pagerAdapter = new SlidePageAdapter(getSupportFragmentManager(), list);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,4 +80,5 @@ public class Ideas extends AppCompatActivity /*implements AdapterView.OnItemSele
     }
 
      */
+
 }

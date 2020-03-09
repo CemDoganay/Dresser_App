@@ -21,15 +21,15 @@
         <activity android:name=".Tagging" />
         <activity android:name=".GeneratedCombination" />
         <activity android:name=".Ideas">
+        </activity>
+        <activity android:name=".TakePicture" />
+        <activity android:name=".CropPic" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".TakePicture" />
-        <activity android:name=".CropPic" />
-        <activity android:name=".MainActivity">
         </activity>
 
         <provider

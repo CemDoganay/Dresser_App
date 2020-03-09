@@ -19,6 +19,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+import com.example.dresser_app.fragments.DressMeFragment;
+import com.example.dresser_app.fragments.WardrobeFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,41 +30,21 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 public class MainActivity extends AppCompatActivity {
 
     private Button mAdd,mCreate,mIdeas;
+    private ViewPager mPager;
+    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       mAdd = findViewById(R.id.Add_button);
-       mCreate = findViewById(R.id.Create_button);
-       mIdeas = findViewById(R.id.ideas_button);
+        List<Fragment> list = new ArrayList<>();
+        list.add(new DressMeFragment());
+        list.add(new WardrobeFragment());
 
+        mPager = findViewById(R.id.pager);
+        pagerAdapter = new SlidePagerAdapter(getSupportFragmentManager(), list);
 
-       mAdd.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Intent intent = new Intent(MainActivity.this, TakePicture.class);
-               startActivity(intent);
-           }
-       });
-
-       mCreate.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-
-           }
-       });
-
-       mIdeas.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Intent intent = new Intent(MainActivity.this, Ideas.class);
-               startActivity(intent);
-
-           }
-       });
-
-
+        mPager.setAdapter(pagerAdapter);
     }
 }

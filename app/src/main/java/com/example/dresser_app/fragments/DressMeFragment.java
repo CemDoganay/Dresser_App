@@ -15,7 +15,7 @@ import com.example.dresser_app.GeneratedCombination;
 import com.example.dresser_app.Ideas;
 import com.example.dresser_app.R;
 
-public class DressMeFragment extends Fragment {
+public class DressMeFragment extends Fragment{
 
     private Button next, gallery;
     private ImageView photoFromGallery;
@@ -27,16 +27,11 @@ public class DressMeFragment extends Fragment {
                 container,
                 false);
 
-        next = findViewById(R.id.button_next_ideas);
-        gallery = findViewById(R.id.button_dressMe);
-        photoFromGallery = findViewById(R.id.gallery_photo);
-
-        //generate = findViewById(R.id.button_dressMe);
-
+        next = (Button) rootView.findViewById(R.id.button_next_ideas);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DressMeFragment.this, GeneratedCombination.class);
+                Intent intent = new Intent(getActivity(), GeneratedCombination.class);
                 startActivity(intent);
             }
         });

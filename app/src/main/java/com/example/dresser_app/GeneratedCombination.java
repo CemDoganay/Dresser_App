@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
 
 public class GeneratedCombination extends AppCompatActivity {
 
@@ -56,10 +58,11 @@ public class GeneratedCombination extends AppCompatActivity {
 
     private Button niceButton, tryAgain;
     private ImageView chosenPhoto;
-    private Cursor picCurosr;
+    private Cursor picCursor;
+    private String picName, clothColor, clothType;
 
     //https://www.journaldev.com/9438/android-sqlite-database-example-tutorial
-    //SQLiteDatabase theDB = this.getReadableDatabase();
+    DatabaseHelper theDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,18 +71,45 @@ public class GeneratedCombination extends AppCompatActivity {
 
         niceButton = findViewById(R.id.button_nice);
         tryAgain = findViewById(R.id.button_tryAgain);
+        theDB = new DatabaseHelper(this);
 
-        String picName = getIntent().getStringExtra(Ideas.CURRENT_PHOTO_NAME);
+        picName = getIntent().getStringExtra(Ideas.CURRENT_PHOTO_NAME);
 
-        //picCurosr = .query(DatabaseHelper.TABLE_NAME, );
+        picCursor = theDB.getPicInfo(picName);
+        picCursor.moveToFirst();
+
+        clothType = picCursor.getString(picCursor.getColumnIndex("TYPE"));
 
         TextView tv = findViewById(R.id.URI_VIEW);
-        tv.setText(picCurosr.toString());
+        //tv.setText();
+
+        if (clothType.equals("TOP")){
+            chosenPhoto = findViewById(R.id.topImage);
+            //Set other ImageView
+        }
+
+        else if (clothType.equals("BOTTOM")){
+            chosenPhoto = findViewById(R.id.botImage);
+            //Set other ImageView
+        }
+
+       else
+           tv.setText("Nothing found");
+
+        Uri thePic = Uri.parse(getIntent().getStringExtra(Ideas.CURRENT_PHOTO_URI));
+        chosenPhoto.setImageURI(thePic);
+
+        picCursor.moveToLast();
+        clothColor = picCursor.getString(picCursor.getColumnIndex("COLOR"));
+        tv.setText(clothColor);
+
+        //Run through algorithm to find matching pictures
+
 
         niceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
+                //Intent intent = new Intent(GeneratedCombination.this, something.class);
                 //startActivity(intent);
             }
         });
@@ -87,7 +117,7 @@ public class GeneratedCombination extends AppCompatActivity {
         tryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
+                //Intent intent = new Intent(GeneratedCombination.this, something.class);
                 //startActivity(intent);
             }
         });

@@ -47,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor searchColor(String color, String type) //work in progress
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + COL_2 + " FROM "+ TABLE_NAME+ " WHERE "+ COL_4 + " LIKE '%"+color+"%' AND " + COL_3 + " LIKE " + type;
+        String query = "SELECT " + COL_2 + " FROM "+ TABLE_NAME+ " WHERE "+ COL_4 + " LIKE '%"+color+"%' AND " + COL_3 + " LIKE '" + type + "'";
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getPicInfo(String picName)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + COL_3 +", " + COL_4 + " FROM "+ TABLE_NAME + " WHERE "+ COL_2 + " = " + picName;
+        String query = "SELECT " + COL_3 +", " + COL_4 + " FROM "+ TABLE_NAME + " WHERE "+ COL_2 + " = '" + picName + "'";
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }

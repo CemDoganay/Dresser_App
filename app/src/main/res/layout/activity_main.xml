@@ -7,60 +7,10 @@
     android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/Add_button"
-        android:layout_width="188dp"
-        android:layout_height="47dp"
-        android:background="#9370DB"
-        android:text="@string/add_a_new_cloth"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ideas_button" />
-
-    <Button
-        android:id="@+id/Create_button"
-        android:layout_width="188dp"
-        android:layout_height="wrap_content"
-        android:background="#9370DB"
-        android:text="@string/button_create_a_combination"
-        app:layout_constraintBottom_toTopOf="@+id/Add_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ideas_button" />
-
-    <Button
-        android:id="@+id/ideas_button"
-        android:layout_width="188dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:text="@string/button_give_me_ideas"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_page"
-        app:layout_constraintVertical_bias="0.25" />
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/menu_page"
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/menu_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/menu_name"
-            android:textSize="30sp" />
-
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>

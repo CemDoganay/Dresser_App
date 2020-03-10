@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter = new SlidePagerAdapter(getSupportFragmentManager(), list);
 
         mPager.setAdapter(pagerAdapter);
-
+/*
         mDressMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, TakePicture.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 }

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter = new SlidePagerAdapter(getSupportFragmentManager(), list);
 
         mPager.setAdapter(pagerAdapter);
-/*
+
         mDressMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,14 +59,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, TakePicture.class);
-                startActivity(intent);
-            }
-        });*/
-
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
                 startActivity(intent);
             }
         });

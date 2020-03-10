@@ -47,20 +47,5 @@ public class MainActivity extends AppCompatActivity {
 
         mPager.setAdapter(pagerAdapter);
 
-        mDressMe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Ideas.class);
-                startActivity(intent);
-            }
-        });
-
-        mAddCloth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TakePicture.class);
-                startActivity(intent);
-            }
-        });
     }
 }

@@ -29,7 +29,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private Button mAdd,mCreate,mIdeas;
+    private Button mDressMe, mAddCloth;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
 
@@ -46,5 +46,21 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter = new SlidePagerAdapter(getSupportFragmentManager(), list);
 
         mPager.setAdapter(pagerAdapter);
+
+        mDressMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Ideas.class);
+                startActivity(intent);
+            }
+        });
+
+        mAddCloth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, TakePicture.class);
+                startActivity(intent);
+            }
+        });
     }
 }

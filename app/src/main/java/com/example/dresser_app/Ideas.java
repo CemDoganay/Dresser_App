@@ -4,13 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 public class Ideas extends AppCompatActivity /*implements AdapterView.OnItemSelectedListener*/{
+
 
     private Button next, gallery;
     private ImageView photoFromGallery;
@@ -70,4 +68,5 @@ public class Ideas extends AppCompatActivity /*implements AdapterView.OnItemSele
     }
 
      */
+
 }

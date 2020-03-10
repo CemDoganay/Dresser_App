@@ -17,52 +17,23 @@ import org.w3c.dom.Text;
 
 
 public class GeneratedCombination extends AppCompatActivity {
-
-    void match(int topColour, String bottomColour){
-        String[][] topBottomMatch = {
-                {"red","blue","white","black","grey"},
-                {"red","blue","green","white","black","grey","brown"},
-                {"blue","green","white","black","grey","brown"},
-                {"blue","orange","white","black"},
-                {"purple","black","white","grey"},
-                {"red","blue","green","white","black","grey","brown"},
-                {"red","blue","green","white","black","grey","brown"},
-                {"blue","white","black","grey"}
-        };
-
-        int flag = 0;
-
-        for(int i = 0;;i++){
-            try{
-                if(topBottomMatch[topColour][i] == bottomColour){
-                    flag = 1;
-                    break;
-                }
-            }catch(Exception e){
-                break;
-            }
-        }
-
-        matchedOutput(flag);
-    }
-
-    void matchedOutput(int flag){
-        if(flag == 1){
-            //output clothing somehow
-        }
-        else{
-            //output that no clothing were matched
-        }
-    }
-
-
     private Button niceButton, tryAgain;
-    private ImageView chosenPhoto;
+    private ImageView chosenPhoto, suggestedPhoto;
     private Cursor picCursor;
     private String picName, clothColor, clothType;
 
-    //https://www.journaldev.com/9438/android-sqlite-database-example-tutorial
-    DatabaseHelper theDB;
+    private static final String[][] matching = {
+            {"RED","BLUE","WHITE","BLACK","GREY"},
+            {"RED","BLUE","GREEN","WHITE","BLACK","GREY","BROWN"},
+            {"BLUE","GREEN","WHITE","BLACK","GREY","BROWN"},
+            {"BLUE","ORANGE","WHITE","BLACK"},
+            {"PURPLE","BLACK","WHITE","GREY"},
+            {"RED","BLUE","GREEN","WHITE","BLACK","GREY","BROWN"},
+            {"RED","BLUE","GREEN","WHITE","BLACK","GREY","BROWN"},
+            {"BLUE","WHITE","BLACK","GREY"}
+    };
+
+    private DatabaseHelper theDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,17 +51,18 @@ public class GeneratedCombination extends AppCompatActivity {
 
         clothType = picCursor.getString(picCursor.getColumnIndex("TYPE"));
 
+        //Extra textview to debug cursor values
         TextView tv = findViewById(R.id.URI_VIEW);
         //tv.setText();
 
         if (clothType.equals("TOP")){
             chosenPhoto = findViewById(R.id.topImage);
-            //Set other ImageView
+            suggestedPhoto = findViewById(R.id.botImage);
         }
 
         else if (clothType.equals("BOTTOM")){
             chosenPhoto = findViewById(R.id.botImage);
-            //Set other ImageView
+            suggestedPhoto = findViewById(R.id.topImage);
         }
 
        else
@@ -101,10 +73,9 @@ public class GeneratedCombination extends AppCompatActivity {
 
         picCursor.moveToLast();
         clothColor = picCursor.getString(picCursor.getColumnIndex("COLOR"));
-        tv.setText(clothColor);
 
         //Run through algorithm to find matching pictures
-
+        tv.setText(match(clothColor)[0]);
 
         niceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,9 +88,53 @@ public class GeneratedCombination extends AppCompatActivity {
         tryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(GeneratedCombination.this, something.class);
-                //startActivity(intent);
+                //Run the algorithm again to find the next matching pair
             }
         });
+    }
+
+
+    String[] match(String color){
+        int colorInArr;
+
+        switch (color.toUpperCase()) {
+            case "RED":
+                colorInArr = 0;
+                break;
+
+            case "BLUE":
+                colorInArr = 1;
+                break;
+
+            case "GREEN":
+                colorInArr = 2;
+                break;
+
+            case "ORANGE":
+                colorInArr = 3;
+                break;
+
+            case "PURPLE":
+                colorInArr = 4;
+                break;
+
+            case "WHITE":
+                colorInArr = 5;
+                break;
+
+            case "BLACK":
+                colorInArr = 6;
+                break;
+
+            case "GREY":
+                colorInArr = 7;
+                break;
+
+            default:
+                colorInArr = -1;
+                break;
+        }
+
+        return matching[colorInArr];
     }
 }

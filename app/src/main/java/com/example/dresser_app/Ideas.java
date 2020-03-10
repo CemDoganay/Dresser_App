@@ -23,8 +23,10 @@ public class Ideas extends AppCompatActivity{
     public static final String CURRENT_PHOTO_URI = "com.example.android.Ideas.extra.CURRENT_PHOTO_URI";
 
     private Button next, gallery;
-    private ImageView photoFromGallery;
     private String nameOfPic, picURI;
+
+    //We can remove this ImageView
+    private ImageView photoFromGallery;
 
     static final int REQUEST_GALLERY = 1;
 
@@ -33,8 +35,10 @@ public class Ideas extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ideas);
 
-        next = findViewById(R.id.button_next_ideas);
         gallery = findViewById(R.id.button_dressMe);
+
+        //The next two lines can be removed - unnecessary button/imageview
+        next = findViewById(R.id.button_next_ideas);
         photoFromGallery = findViewById(R.id.gallery_photo);
 
 
@@ -49,14 +53,16 @@ public class Ideas extends AppCompatActivity{
                 startActivityForResult(intent, REQUEST_GALLERY);
             }
         });
-
+        //Unnecessary listener
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
                 intent.putExtra(CURRENT_PHOTO_NAME, nameOfPic);
                 intent.putExtra(CURRENT_PHOTO_URI, picURI);
                 startActivity(intent);
+                */
             }
         });
     }
@@ -68,11 +74,16 @@ public class Ideas extends AppCompatActivity{
                 case REQUEST_GALLERY:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData(); //This includes the path and the name of the picture
-                    photoFromGallery.setImageURI(selectedImage);
+                    photoFromGallery.setImageURI(selectedImage); //Can remove this
                     picURI = selectedImage.toString();
 
                     String temp = selectedImage.getPath();
                     nameOfPic = temp.substring(temp.indexOf("P") + 9);
+
+                    Intent intent = new Intent(Ideas.this, GeneratedCombination.class);
+                    intent.putExtra(CURRENT_PHOTO_NAME, nameOfPic);
+                    intent.putExtra(CURRENT_PHOTO_URI, picURI);
+                    startActivity(intent);
                     break;
             }
     }

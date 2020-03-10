@@ -29,7 +29,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mAdd,mCreate,mIdeas;
+    //private Button mAdd,mCreate,mIdeas;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
 

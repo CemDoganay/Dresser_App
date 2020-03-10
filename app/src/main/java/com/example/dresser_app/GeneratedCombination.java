@@ -19,8 +19,9 @@ import org.w3c.dom.Text;
 public class GeneratedCombination extends AppCompatActivity {
     private Button niceButton, tryAgain;
     private ImageView chosenPhoto, suggestedPhoto;
-    private Cursor picCursor;
-    private String picName, clothColor, clothType;
+    private Cursor picCursor, suggestCursor;
+    private String picName, m_picName, clothColor, clothType, m_clothType;
+    private String[] m_clothColor;
 
     private static final String[][] matching = {
             {"RED","BLUE","WHITE","BLACK","GREY"},
@@ -49,33 +50,52 @@ public class GeneratedCombination extends AppCompatActivity {
         picCursor = theDB.getPicInfo(picName);
         picCursor.moveToFirst();
 
+        clothColor = picCursor.getString(picCursor.getColumnIndex("COLOR"));
         clothType = picCursor.getString(picCursor.getColumnIndex("TYPE"));
 
         //Extra textview to debug cursor values
         TextView tv = findViewById(R.id.URI_VIEW);
-        //tv.setText();
+
 
         if (clothType.equals("TOP")){
             chosenPhoto = findViewById(R.id.topImage);
             suggestedPhoto = findViewById(R.id.botImage);
+            m_clothType = "BOTTOM";
         }
 
         else if (clothType.equals("BOTTOM")){
             chosenPhoto = findViewById(R.id.botImage);
             suggestedPhoto = findViewById(R.id.topImage);
+            m_clothType = "TOP";
         }
 
        else
-           tv.setText("Nothing found");
+           tv.setText("Cloth type error");
 
-        Uri thePic = Uri.parse(getIntent().getStringExtra(Ideas.CURRENT_PHOTO_URI));
-        chosenPhoto.setImageURI(thePic);
-
-        picCursor.moveToLast();
-        clothColor = picCursor.getString(picCursor.getColumnIndex("COLOR"));
 
         //Run through algorithm to find matching pictures
-        tv.setText(match(clothColor)[0]);
+        m_clothColor = matchColor(clothColor);
+
+        suggestCursor = theDB.getMatchingCloth(m_clothColor[0], m_clothType);
+        suggestCursor.moveToFirst();
+
+        //Need a try catch block
+        //m_picName = suggestCursor.getString(suggestCursor.getColumnIndex("ADDRESS"));
+
+
+        Uri chosenURI = Uri.parse(getIntent().getStringExtra(Ideas.CURRENT_PHOTO_URI));
+        chosenPhoto.setImageURI(chosenURI);
+
+        //Get matching picture's name to find the URI of it
+
+        /*
+        Uri matchingURI = Uri.parse("content://com.android.externalstorage.documents/document/primary%3AAndroid%2Fdata%2Fcom.example.dresser_app%2Ffiles%2FPictures%2F" + m_picName);
+        suggestedPhoto.setImageURI(matchingURI);
+         */
+
+        tv.setText(m_picName);
+
+
 
         niceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +114,7 @@ public class GeneratedCombination extends AppCompatActivity {
     }
 
 
-    String[] match(String color){
+    String[] matchColor(String color){
         int colorInArr;
 
         switch (color.toUpperCase()) {
@@ -136,5 +156,9 @@ public class GeneratedCombination extends AppCompatActivity {
         }
 
         return matching[colorInArr];
+    }
+
+    void getMatchingPic(String matchColor, String otherType) {
+        //suggestCursor = theDB.getMatchingCloth(matchColor, otherType);
     }
 }

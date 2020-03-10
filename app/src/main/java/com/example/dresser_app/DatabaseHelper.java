@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-     db.execSQL("create table " +  TABLE_NAME + " (CLOTH_ID INTEGER PRIMARY KEY AUTOINCREMENT, ADDRESS TEXT, TYPE TEXT, COLOR TEXT)");
+     db.execSQL("create table " + TABLE_NAME + " (CLOTH_ID INTEGER PRIMARY KEY AUTOINCREMENT, ADDRESS TEXT, TYPE TEXT, COLOR TEXT)");
     }
 
     @Override
@@ -44,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    /*
     public Cursor searchColor(String color, String type) //work in progress
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -51,12 +52,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
+     */
 
 
-    public Cursor getPicInfo(String picName)
-    {
+    public Cursor getPicInfo(String picName) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT " + COL_3 +", " + COL_4 + " FROM "+ TABLE_NAME + " WHERE "+ COL_2 + " = '" + picName + "'";
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+    public Cursor getMatchingCloth(String matchingClothColor, String matchingType) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + COL_2 + " FROM " + TABLE_NAME + " WHERE " + COL_4 + " = '" + matchingClothColor.toUpperCase() + "' AND " + COL_3 + " = '" + matchingType + "'";
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }

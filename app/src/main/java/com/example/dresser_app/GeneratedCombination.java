@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.nfc.Tag;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 
 public class GeneratedCombination extends AppCompatActivity {
@@ -80,21 +87,29 @@ public class GeneratedCombination extends AppCompatActivity {
         suggestCursor.moveToFirst();
 
         //Need a try catch block
-        //m_picName = suggestCursor.getString(suggestCursor.getColumnIndex("ADDRESS"));
+        m_picName = suggestCursor.getString(suggestCursor.getColumnIndex("ADDRESS"));
 
-
+        //Setting the photo that the user had selected into the imageview
         Uri chosenURI = Uri.parse(getIntent().getStringExtra(Ideas.CURRENT_PHOTO_URI));
         chosenPhoto.setImageURI(chosenURI);
 
+
+
         //Get matching picture's name to find the URI of it
+        Uri matchingURI = Uri.parse("/com.android.externalstorage.documents/document/Android%2Fdata%2Fcom.example.dresser_app%2Ffiles%2FPictures%2F" + m_picName);
+        File f = new File (getExternalFilesDir(Environment.DIRECTORY_PICTURES), m_picName);
 
-        /*
-        Uri matchingURI = Uri.parse("content://com.android.externalstorage.documents/document/primary%3AAndroid%2Fdata%2Fcom.example.dresser_app%2Ffiles%2FPictures%2F" + m_picName);
-        suggestedPhoto.setImageURI(matchingURI);
-         */
+        try {
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            suggestedPhoto.setImageBitmap(b);
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-        tv.setText(m_picName);
 
+        //suggestedPhoto.setImageURI(matchingURI);
+        //tv.setText(matchingURI.toString());
 
 
         niceButton.setOnClickListener(new View.OnClickListener() {

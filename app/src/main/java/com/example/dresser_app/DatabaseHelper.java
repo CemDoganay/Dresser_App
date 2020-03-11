@@ -57,14 +57,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getPicInfo(String picName) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + COL_3 +", " + COL_4 + " FROM "+ TABLE_NAME + " WHERE "+ COL_2 + " = '" + picName + "'";
+        String query = "SELECT " + COL_3 +", " + COL_4 + " FROM "+ TABLE_NAME + " WHERE "+ COL_2 + " = '" + picName + "';";
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
 
     public Cursor getMatchingCloth(String matchingClothColor, String matchingType) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + COL_2 + " FROM " + TABLE_NAME + " WHERE " + COL_4 + " = '" + matchingClothColor.toUpperCase() + "' AND " + COL_3 + " = '" + matchingType + "'";
+        String query = "SELECT " + COL_2 + " FROM " + TABLE_NAME + " WHERE " + COL_4 + " = '" + matchingClothColor.toUpperCase() + "' AND " + COL_3 + " = '" + matchingType + "';";
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }

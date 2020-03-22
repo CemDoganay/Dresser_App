@@ -14,3 +14,7 @@ android:
   #These two lines exist in order to get around the permission error
 before_install:
   - chmod +x gradlew
+  
+script:
+  #Default test command for gradle file
+  gradle build connectedCheck

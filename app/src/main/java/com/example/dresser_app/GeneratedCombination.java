@@ -108,15 +108,14 @@ public class GeneratedCombination extends AppCompatActivity {
         }
 
 
-        //suggestedPhoto.setImageURI(matchingURI);
         //tv.setText(matchingURI.toString());
 
 
         niceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(GeneratedCombination.this, something.class);
-                //startActivity(intent);
+                Intent intent = new Intent(GeneratedCombination.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

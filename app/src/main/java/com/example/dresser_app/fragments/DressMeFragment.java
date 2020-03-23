@@ -69,7 +69,7 @@ public class DressMeFragment extends Fragment{
                 case REQUEST_GALLERY:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData(); //This includes the path and the name of the picture
-                    photoFromGallery.setImageURI(selectedImage); //Can remove this
+                    //photoFromGallery.setImageURI(selectedImage); //Can remove this
                     picURI = selectedImage.toString();
 
                     String temp = selectedImage.getPath();

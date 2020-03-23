@@ -60,7 +60,7 @@ public class TakePicture extends AppCompatActivity {
                     if (imgFile.exists()) {
                         //msg.setText("Image found at:\n" + currentPhotoPath);
                         setPic();
-                        loadImage.setText("Crop Image");
+                        loadImage.setText("Next");
                     }
 
                     else {
@@ -68,10 +68,10 @@ public class TakePicture extends AppCompatActivity {
                     }
                 }
 
-                else if (loadImage.getText() == "Crop Image") {
+                else if (loadImage.getText() == "Next") {
                     //Crop intent
                     if (currentPhotoUri != null) {
-                        Intent cropIntent = new Intent(TakePicture.this, CropPic.class);
+                        Intent cropIntent = new Intent(TakePicture.this, Tagging.class);
                         cropIntent.putExtra(CURRENT_PHOTO_PATH, currentPhotoPath);
                         cropIntent.putExtra(CURRENT_PHOTO_URI, currentPhotoUri.toString());
                         startActivity(cropIntent);

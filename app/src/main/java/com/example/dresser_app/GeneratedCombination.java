@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.dresser_app.fragments.DressMeFragment;
+
 import org.w3c.dom.Text;
 
 import java.io.File;
@@ -56,7 +58,7 @@ public class GeneratedCombination extends AppCompatActivity {
         tryAgain = findViewById(R.id.button_tryAgain);
         theDB = new DatabaseHelper(this);
 
-        picName = getIntent().getStringExtra(Ideas.CURRENT_PHOTO_NAME);
+        picName = getIntent().getStringExtra(DressMeFragment.CURRENT_PHOTO_NAME);
 
         picCursor = theDB.getPicInfo(picName);
         picCursor.moveToFirst();
@@ -97,7 +99,7 @@ public class GeneratedCombination extends AppCompatActivity {
 
 
         //Setting the photo that the user had selected into the imageview
-        Uri chosenURI = Uri.parse(getIntent().getStringExtra(Ideas.CURRENT_PHOTO_URI));
+        Uri chosenURI = Uri.parse(getIntent().getStringExtra(DressMeFragment.CURRENT_PHOTO_URI));
         chosenPhoto.setImageURI(chosenURI);
 
 

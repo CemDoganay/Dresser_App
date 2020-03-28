@@ -131,6 +131,19 @@ public class GeneratedCombination extends AppCompatActivity {
             public void onClick(View view) {
                 //Run the algorithm again to find the next matching pair
                 getMatchingPic();
+
+                //Found match somewhere
+                try {
+                    //Get matching picture's name to find the URI of it
+                    File f = new File (getExternalFilesDir(Environment.DIRECTORY_PICTURES), m_picName);
+                    Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+                    suggestedPhoto.setImageBitmap(b);
+                }
+                //Could not find match
+                catch (Exception e) {
+                    e.printStackTrace();
+                    tv.setText("Exception caught: file not found!\n" + e.toString());
+                }
             }
         });
     }
@@ -185,30 +198,49 @@ public class GeneratedCombination extends AppCompatActivity {
     }
 
     void getMatchingPic() {
-        if (suggestCursor == null)
-        {
-            suggestCursor = theDB.getMatchingCloth(m_clothColor[clothSearchPosition], m_clothType);
-            suggestCursor.moveToFirst();
+        while (clothSearchPosition < m_clothColor.length) {
+            if (suggestCursor == null) {
+                suggestCursor = theDB.getMatchingCloth(m_clothColor[clothSearchPosition], m_clothType);
+                suggestCursor.moveToFirst();
+
+                try {
+                    int text = suggestCursor.getCount();
+                    m_picName = suggestCursor.getString(suggestCursor.getColumnIndex("ADDRESS"));
+                    tv.setText(Integer.toString(text) + " pictures found for color " + m_clothColor[clothSearchPosition]);
+
+                    break;
+                }
+
+                catch (Exception e) {
+                    clothSearchPosition++;
+                    suggestCursor = null;
+                    tv.setText("Exception caught: cursor empty!");
+                    //Message, maybe?
+                }
+            }
+
+            else {
+                suggestCursor.moveToNext();
+
+                int text = suggestCursor.getCount();
+
+                try {
+                    m_picName = suggestCursor.getString(suggestCursor.getColumnIndex("ADDRESS"));
+                    tv.setText(m_picName);
+
+                    break;
+                }
+
+                catch (Exception e) {
+                    clothSearchPosition++;
+                    suggestCursor = null;
+                    tv.setText("Exception caught: cursor out of bounds!");
+                    //Message, maybe?
+                }
+            }
         }
 
-
-        //while (suggestCursor != null) {
-            //suggestCursor = theDB.getMatchingCloth(m_clothColor[clothSearchPosition], m_clothType);
-            suggestCursor.moveToNext();
-
-            int text = suggestCursor.getCount();
-
-
-            try {
-                m_picName = suggestCursor.getString(suggestCursor.getColumnIndex("ADDRESS"));
-                tv.setText(Integer.toString(text));
-            }
-
-            catch (Exception e) {
-                clothSearchPosition++;
-                tv.setText("Exception caught: cursor empty!\n" + e.toString());
-                //Message, maybe?
-            }
-        //}
+        if (clothSearchPosition == m_clothColor.length)
+            clothSearchPosition = 0;
     }
 }

@@ -23,7 +23,6 @@
         <activity android:name=".Ideas">
         </activity>
         <activity android:name=".TakePicture" />
-        <activity android:name=".CropPic" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

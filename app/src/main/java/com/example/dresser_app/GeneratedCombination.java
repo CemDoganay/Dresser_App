@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.nfc.Tag;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +18,16 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 
 public class GeneratedCombination extends AppCompatActivity {
     private Button niceButton, tryAgain;
     private ImageView chosenPhoto, suggestedPhoto;
     private Cursor picCursor, suggestCursor;
+    private int clothSearchPosition = 0;
     private String picName, m_picName, clothColor, clothType, m_clothType;
     private String[] m_clothColor;
 
@@ -35,6 +43,9 @@ public class GeneratedCombination extends AppCompatActivity {
     };
 
     private DatabaseHelper theDB;
+
+    //Extra textview to debug cursor values
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +65,7 @@ public class GeneratedCombination extends AppCompatActivity {
         clothType = picCursor.getString(picCursor.getColumnIndex("TYPE"));
 
         //Extra textview to debug cursor values
-        TextView tv = findViewById(R.id.URI_VIEW);
+        tv = findViewById(R.id.URI_VIEW);
 
 
         if (clothType.equals("TOP")){
@@ -76,32 +87,42 @@ public class GeneratedCombination extends AppCompatActivity {
         //Run through algorithm to find matching pictures
         m_clothColor = matchColor(clothColor);
 
-        suggestCursor = theDB.getMatchingCloth(m_clothColor[0], m_clothType);
-        suggestCursor.moveToFirst();
+        if (m_clothColor != null)
+            getMatchingPic();
 
-        //Need a try catch block
-        //m_picName = suggestCursor.getString(suggestCursor.getColumnIndex("ADDRESS"));
+        else
+        {
+            //Go back to main menu with error message
+        }
 
 
+        //Setting the photo that the user had selected into the imageview
         Uri chosenURI = Uri.parse(getIntent().getStringExtra(Ideas.CURRENT_PHOTO_URI));
         chosenPhoto.setImageURI(chosenURI);
 
-        //Get matching picture's name to find the URI of it
 
-        /*
-        Uri matchingURI = Uri.parse("content://com.android.externalstorage.documents/document/primary%3AAndroid%2Fdata%2Fcom.example.dresser_app%2Ffiles%2FPictures%2F" + m_picName);
-        suggestedPhoto.setImageURI(matchingURI);
-         */
+        //Found match somewhere
+        try {
+            //Get matching picture's name to find the URI of it
+            File f = new File (getExternalFilesDir(Environment.DIRECTORY_PICTURES), m_picName);
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            suggestedPhoto.setImageBitmap(b);
+        }
+        //2. First time running algo, could not find match in first element of m_clothColor: OR 2. Could not find a match after going through entire m_clothColor
+        catch (Exception e) {
+            e.printStackTrace();
+            tv.setText("Exception caught: file not found!\n" + e.toString());
+        }
 
-        tv.setText(m_picName);
 
+        //tv.setText(matchingURI.toString());
 
 
         niceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(GeneratedCombination.this, something.class);
-                //startActivity(intent);
+                Intent intent = new Intent(GeneratedCombination.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -109,6 +130,20 @@ public class GeneratedCombination extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Run the algorithm again to find the next matching pair
+                getMatchingPic();
+
+                //Found match somewhere
+                try {
+                    //Get matching picture's name to find the URI of it
+                    File f = new File (getExternalFilesDir(Environment.DIRECTORY_PICTURES), m_picName);
+                    Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+                    suggestedPhoto.setImageBitmap(b);
+                }
+                //Could not find match
+                catch (Exception e) {
+                    e.printStackTrace();
+                    tv.setText("Exception caught: file not found!\n" + e.toString());
+                }
             }
         });
     }
@@ -155,10 +190,57 @@ public class GeneratedCombination extends AppCompatActivity {
                 break;
         }
 
-        return matching[colorInArr];
+        if (colorInArr != -1)
+            return matching[colorInArr];
+
+        else
+            return null;
     }
 
-    void getMatchingPic(String matchColor, String otherType) {
-        //suggestCursor = theDB.getMatchingCloth(matchColor, otherType);
+    void getMatchingPic() {
+        while (clothSearchPosition < m_clothColor.length) {
+            if (suggestCursor == null) {
+                suggestCursor = theDB.getMatchingCloth(m_clothColor[clothSearchPosition], m_clothType);
+                suggestCursor.moveToFirst();
+
+                try {
+                    int text = suggestCursor.getCount();
+                    m_picName = suggestCursor.getString(suggestCursor.getColumnIndex("ADDRESS"));
+                    tv.setText(Integer.toString(text) + " pictures found for color " + m_clothColor[clothSearchPosition]);
+
+                    break;
+                }
+
+                catch (Exception e) {
+                    clothSearchPosition++;
+                    suggestCursor = null;
+                    tv.setText("Exception caught: cursor empty!");
+                    //Message, maybe?
+                }
+            }
+
+            else {
+                suggestCursor.moveToNext();
+
+                int text = suggestCursor.getCount();
+
+                try {
+                    m_picName = suggestCursor.getString(suggestCursor.getColumnIndex("ADDRESS"));
+                    tv.setText(m_picName);
+
+                    break;
+                }
+
+                catch (Exception e) {
+                    clothSearchPosition++;
+                    suggestCursor = null;
+                    tv.setText("Exception caught: cursor out of bounds!");
+                    //Message, maybe?
+                }
+            }
+        }
+
+        if (clothSearchPosition == m_clothColor.length)
+            clothSearchPosition = 0;
     }
 }

@@ -17,11 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Wardrobe"></activity>
         <activity android:name=".Tagging" />
         <activity android:name=".GeneratedCombination" />
-        <activity android:name=".Ideas">
-        </activity>
         <activity android:name=".TakePicture" />
         <activity android:name=".MainActivity">
             <intent-filter>

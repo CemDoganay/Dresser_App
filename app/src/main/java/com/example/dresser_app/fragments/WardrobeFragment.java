@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.example.dresser_app.DatabaseHelper;
 import com.example.dresser_app.R;
 import com.example.dresser_app.TakePicture;
-import com.example.dresser_app.Wardrobe;
 
 import java.io.File;
 

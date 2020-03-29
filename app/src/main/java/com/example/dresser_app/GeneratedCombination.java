@@ -15,6 +15,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.dresser_app.fragments.DressMeFragment;
+
+import com.example.dresser_app.fragments.DressMeFragment;
 
 import org.w3c.dom.Text;
 
@@ -56,7 +61,7 @@ public class GeneratedCombination extends AppCompatActivity {
         tryAgain = findViewById(R.id.button_tryAgain);
         theDB = new DatabaseHelper(this);
 
-        picName = getIntent().getStringExtra(Ideas.CURRENT_PHOTO_NAME);
+        picName = getIntent().getStringExtra(DressMeFragment.CURRENT_PHOTO_NAME);
 
         picCursor = theDB.getPicInfo(picName);
         picCursor.moveToFirst();
@@ -68,13 +73,13 @@ public class GeneratedCombination extends AppCompatActivity {
         tv = findViewById(R.id.URI_VIEW);
 
 
-        if (clothType.equals("TOP")){
+        if (clothType.equals("TOP")) {
             chosenPhoto = findViewById(R.id.topImage);
             suggestedPhoto = findViewById(R.id.botImage);
             m_clothType = "BOTTOM";
         }
 
-        else if (clothType.equals("BOTTOM")){
+        else if (clothType.equals("BOTTOM")) {
             chosenPhoto = findViewById(R.id.botImage);
             suggestedPhoto = findViewById(R.id.topImage);
             m_clothType = "TOP";
@@ -90,14 +95,16 @@ public class GeneratedCombination extends AppCompatActivity {
         if (m_clothColor != null)
             getMatchingPic();
 
-        else
-        {
-            //Go back to main menu with error message
+        else {
+            Toast.makeText(this, "No matching clothes in your wardrobe... Add more!", Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(GeneratedCombination.this, MainActivity.class);
+            startActivity(intent);
         }
 
 
         //Setting the photo that the user had selected into the imageview
-        Uri chosenURI = Uri.parse(getIntent().getStringExtra(Ideas.CURRENT_PHOTO_URI));
+        Uri chosenURI = Uri.parse(getIntent().getStringExtra(DressMeFragment.CURRENT_PHOTO_URI));
         chosenPhoto.setImageURI(chosenURI);
 
 

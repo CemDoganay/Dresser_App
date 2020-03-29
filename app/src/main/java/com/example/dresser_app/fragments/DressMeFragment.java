@@ -26,46 +26,47 @@ public class DressMeFragment extends Fragment{
 
     private Button next, gallery;
     private String nameOfPic, picURI;
-    private ImageView photoFromGallery;
+    //private ImageView photoFromGallery;
     static final int REQUEST_GALLERY = 1;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.activity_ideas,
-                container,
-                false);
+        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.activity_ideas, container,false);
 
         gallery = (Button) rootView.findViewById(R.id.button_dressMe);
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File dir = new File(Environment.DIRECTORY_PICTURES);
+                //File dir = new File(Environment.DIRECTORY_PICTURES);
+                File dir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setDataAndType(Uri.parse(dir.getPath()), "image/*");
+                intent.setDataAndType(Uri.fromFile(dir), "image/*");
 
                 startActivityForResult(intent, REQUEST_GALLERY);
             }
         });
 
+        /*
         next = (Button) rootView.findViewById(R.id.button_next_ideas);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), GeneratedCombination.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getActivity(), GeneratedCombination.class);
+                //startActivity(intent);
             }
-        });
+        });*/
 
 
 
         return rootView;
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if (resultCode == Activity.RESULT_OK)
-            switch (requestCode){
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
                 case REQUEST_GALLERY:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData(); //This includes the path and the name of the picture
@@ -81,5 +82,6 @@ public class DressMeFragment extends Fragment{
                     startActivity(intent);
                     break;
             }
+        }
     }
 }

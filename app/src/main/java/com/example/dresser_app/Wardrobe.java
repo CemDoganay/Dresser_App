@@ -27,5 +27,13 @@ public class Wardrobe extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Wardrobe.this, Ideas.class);
+                startActivity(intent);
+            }
+        });
     }
 }

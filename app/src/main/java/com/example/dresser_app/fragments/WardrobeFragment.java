@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.example.dresser_app.DatabaseHelper;
 import com.example.dresser_app.R;
 import com.example.dresser_app.TakePicture;
-import com.example.dresser_app.Wardrobe;
 
 import java.io.File;
 
@@ -25,20 +24,32 @@ import java.io.File;
 
 public class WardrobeFragment extends Fragment {
 
-    private static final int REQUEST_GALLERY = 1 ;
+    private static final int DELETE_PICTURE = 1;
     private Button mOpen, mAdd, mRemove;
-    private DatabaseHelper mydb;
+    private DatabaseHelper theDB;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.activity_wardrobe,
-                container,
-                false);
+        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.activity_wardrobe, container,false);
 
-        mydb = new DatabaseHelper(getActivity());
-        mAdd = (Button) rootView.findViewById(R.id.add_button);
-        mRemove = (Button) rootView.findViewById(R.id.remove_button);
+        theDB = new DatabaseHelper(getActivity());
+
+        mOpen = rootView.findViewById(R.id.open_button);
+        mAdd = rootView.findViewById(R.id.add_button);
+        mRemove = rootView.findViewById(R.id.remove_button);
+
+        mOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                File dir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setDataAndType(Uri.parse(dir.getPath()), "image/*");
+
+                startActivity(intent);
+            }
+        });
 
         mAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,16 +58,16 @@ public class WardrobeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         mRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File dir = new File(Environment.DIRECTORY_PICTURES);
+                File dir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setDataAndType(Uri.parse(dir.getPath()), "image/*");
 
-                startActivityForResult(intent, REQUEST_GALLERY);
-
+                startActivityForResult(intent, DELETE_PICTURE);
             }
         });
 
@@ -67,24 +78,26 @@ public class WardrobeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if (resultCode == Activity.RESULT_OK)
             switch (requestCode){
-                case REQUEST_GALLERY:
+                case DELETE_PICTURE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData(); //This includes the path and the name of the picture
-                    //photoFromGallery.setImageURI(selectedImage); //Can remove this
-
-                    String picURI = selectedImage.toString();
                     String temp = selectedImage.getPath();
                     String nameOfPic = temp.substring(temp.indexOf("P") + 9);
 
-                    int result = mydb.deleteData(nameOfPic);
+                    int result = theDB.deleteData(nameOfPic);
 
                     if(result > 0) {
-                        File delFile = new File(picURI);
+                        //Acquiring file to delete
+                        File delFile = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), nameOfPic);
+
                         if (delFile.exists()) {
                             delFile.delete();
                             Toast.makeText(getActivity(), "Data Deleted", Toast.LENGTH_LONG).show();
                         }
-                        else Toast.makeText(getActivity(), "Data Deleted from database but not from gallery", Toast.LENGTH_LONG).show();
+                        else {
+                            //Toast.makeText(getActivity(), "Data Deleted from database but not from gallery", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), delFile.getPath(), Toast.LENGTH_LONG).show();
+                        }
 
                     }
                     else {

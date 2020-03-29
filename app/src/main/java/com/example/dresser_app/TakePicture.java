@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -86,6 +87,9 @@ public class TakePicture extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     File delFile = new File(currentPhotoPath);
+
+                    Toast.makeText(TakePicture.this, delFile.getAbsolutePath(), Toast.LENGTH_LONG).show();
+
                     if (delFile.exists())
                         delFile.delete();
 

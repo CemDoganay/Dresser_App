@@ -44,6 +44,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public int deleteData(String address)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        //db.execSQL("delete from "+TABLE_NAME+" where "+ COL_2 + " = '" + address + "';" );
+        return db.delete(TABLE_NAME, COL_2 + " = '" + address + "'", null);
+    }
+
     /*
     public Cursor searchColor(String color, String type) //work in progress
     {

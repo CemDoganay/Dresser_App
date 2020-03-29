@@ -40,15 +40,28 @@ public class WardrobeFragment extends Fragment {
         mRemove = (Button) rootView.findViewById(R.id.remove_button);
 
         mAdd.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This activity is used to add a new clothing to your wardrobe. It opens the Camera app
+             * to take a picture of your clothing. Once taken you can either take another picture or
+             * use the current photo. Then you will be able to edit the information about the
+             * picture.
+             * @param add
+             */
             @Override
-            public void onClick(View view) {
+            public void onClick(View add) {
                 Intent intent = new Intent(getActivity(), TakePicture.class);
                 startActivity(intent);
             }
         });
         mRemove.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This activity is used to remove clothing from your wardrobe. It opens the Gallery app
+             * to go through your photos. Once an image is selected it will be removed from the
+             * database and phones storage.
+             * @param remove
+             */
             @Override
-            public void onClick(View view) {
+            public void onClick(View remove) {
                 File dir = new File(Environment.DIRECTORY_PICTURES);
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);

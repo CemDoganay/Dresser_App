@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.example.dresser_app.fragments.DressMeFragment;
 
+import com.example.dresser_app.fragments.DressMeFragment;
+
 import org.w3c.dom.Text;
 
 import java.io.File;

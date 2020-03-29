@@ -38,6 +38,12 @@ public class DressMeFragment extends Fragment{
 
         gallery = (Button) rootView.findViewById(R.id.button_dressMe);
         gallery.setOnClickListener(new View.OnClickListener() {
+            /**
+             * When the Dress Me button is pressed this button will call the Gallery app and go into
+             * the directory of the phone. This is where the user will choose one of the pieces of
+             * clothing they would like to match.
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 File dir = new File(Environment.DIRECTORY_PICTURES);
@@ -50,7 +56,14 @@ public class DressMeFragment extends Fragment{
         });
 
         next = (Button) rootView.findViewById(R.id.button_next_ideas);
+
         next.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Currently you need to push the next button right after you choose a piece of clothing
+             * from the Dress Me button. This will then go to another page to show which clothing
+             * matches the selected clothing.
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), GeneratedCombination.class);

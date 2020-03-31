@@ -1,5 +1,6 @@
 package com.example.dresser_app;
 
+import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 
 import com.example.dresser_app.fragments.DressMeFragment;
@@ -18,6 +19,7 @@ public class FragmentTest {
 
     @Test
     public void checkToolbarTucked() {
-        onView(withId(R.id.toolbar_tucked)).check(matches(withText("Tucked")));
+        ViewInteraction mainTextView = onView(withId(R.id.toolbar_tucked));
+        mainTextView.check(matches(withText("Tucked")));
     }
 }

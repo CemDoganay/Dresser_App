@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.repeatedlyUntil;
-import static android.support.test.espresso.action.ViewActions.swipeLeft;
+import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -32,7 +32,7 @@ public class FragmentTest {
     public void checkWardrobeAddText(){
         ViewInteraction addButton = onView(withId(R.id.button_add));
         addButton
-                .perform(repeatedlyUntil(swipeLeft(), (Matcher<View>) matches(withId(R.id.button_add)), 10))
+                .perform(repeatedlyUntil(swipeRight(), (Matcher<View>) matches(withId(R.id.button_add)), 10))
                 .check(matches(withText("Add")));
     }
     @Test

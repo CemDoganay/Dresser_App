@@ -1,7 +1,10 @@
 package com.example.dresser_app;
 
 import android.support.test.espresso.ViewInteraction;
-import android.support.test.espresso.action.ViewActions;
+import android.support.test.espresso.action.GeneralLocation;
+import android.support.test.espresso.action.GeneralSwipeAction;
+import android.support.test.espresso.action.Press;
+import android.support.test.espresso.action.Swipe;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -29,7 +32,8 @@ public class FragmentTest {
     public void checkWardrobeAddText(){
         ViewInteraction addButton = onView(withId(R.id.button_add));
         addButton
-                .perform(ViewActions.swipeLeft())
+                .perform(new GeneralSwipeAction(Swipe.FAST, GeneralLocation.TOP_LEFT,
+                        GeneralLocation.BOTTOM_RIGHT, Press.FINGER))
                 .check(matches(withText("Add")));
     }
     @Test

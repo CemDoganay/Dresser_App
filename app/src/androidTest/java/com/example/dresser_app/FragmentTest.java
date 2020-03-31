@@ -28,8 +28,9 @@ public class FragmentTest {
     @Test
     public void checkWardrobeAddText(){
         ViewInteraction addButton = onView(withId(R.id.button_add));
-        addButton.check(matches(withText("Add")))
-        .perform(swipeLeft());
+        addButton
+        .perform(swipeLeft())
+        .check(matches(withText("Add")));
     }
     @Test
     public void checkDressMeText() {

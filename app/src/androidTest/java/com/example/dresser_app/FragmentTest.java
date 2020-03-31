@@ -23,6 +23,10 @@ public class FragmentTest {
         ViewInteraction mainTextView = onView(withId(R.id.toolbar_tucked));
         mainTextView.check(matches(withText("Tucked")));
 
+    }
+
+    @Test
+    public void checkDressMeText() {
         ViewInteraction ideasButton = onView(withId(R.id.button_dressMe));
         ideasButton.check(matches(withText("Dress Me")));
     }

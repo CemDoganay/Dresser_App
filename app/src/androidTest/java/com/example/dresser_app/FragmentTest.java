@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -27,16 +28,12 @@ public class FragmentTest {
     @Test
     public void checkWardrobeAddText(){
         ViewInteraction addButton = onView(withId(R.id.button_add));
-        addButton.check(matches(withText("Add")));
+        addButton.check(matches(withText("Add")))
+        .perform(scrollTo());
     }
     @Test
     public void checkDressMeText() {
         ViewInteraction ideasButton = onView(withId(R.id.button_dressMe));
         ideasButton.check(matches(withText("Dress Me")));
-    }
-
-    @Test
-    public void testDressMe() {
-
     }
 }

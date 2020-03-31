@@ -16,12 +16,15 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 public class FragmentTest {
     @Rule
-    public ActivityTestRule mActivityTestRule = new ActivityTestRule(MainActivity.class);
+    public ActivityTestRule mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
     public void checkToolbarTucked() {
         ViewInteraction mainTextView = onView(withId(R.id.toolbar_tucked));
         mainTextView.check(matches(withText("Tucked")));
+
+        ViewInteraction ideasButton = onView(withId(R.id.button_dressMe));
+        ideasButton.check(matches(withText("Dress Me")));
     }
 
     @Test

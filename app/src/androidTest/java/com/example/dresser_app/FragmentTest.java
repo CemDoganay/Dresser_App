@@ -1,17 +1,15 @@
 package com.example.dresser_app;
 
+import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
 
-import org.hamcrest.Matcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.repeatedlyUntil;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -32,7 +30,7 @@ public class FragmentTest {
     public void checkWardrobeAddText(){
         ViewInteraction addButton = onView(withId(R.id.button_add));
         addButton
-                .perform(repeatedlyUntil(swipeLeft(), (Matcher<View>) matches(withId(R.layout.activity_wardrobe)), 20))
+                .perform(swipeLeft(), (ViewAction) withId(R.layout.activity_wardrobe))
                 .check(matches(withText("Add")));
     }
     @Test

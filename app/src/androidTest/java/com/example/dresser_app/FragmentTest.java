@@ -4,6 +4,8 @@ import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.example.dresser_app.fragments.WardrobeFragment;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,7 +21,7 @@ public class FragmentTest {
 
 
     @Rule
-    public ActivityTestRule mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule mActivityTestRule = new ActivityTestRule(WardrobeFragment.class);
 
     @Before
     public void swiping() {

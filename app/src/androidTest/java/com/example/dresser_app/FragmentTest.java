@@ -22,9 +22,13 @@ public class FragmentTest {
     public void checkToolbarTucked() {
         ViewInteraction mainTextView = onView(withId(R.id.toolbar_tucked));
         mainTextView.check(matches(withText("Tucked")));
-
     }
 
+    @Test
+    public void checkWardrobeAddText(){
+        ViewInteraction addButton = onView(withId(R.id.button_add));
+        addButton.check(matches(withText("Add")));
+    }
     @Test
     public void checkDressMeText() {
         ViewInteraction ideasButton = onView(withId(R.id.button_dressMe));

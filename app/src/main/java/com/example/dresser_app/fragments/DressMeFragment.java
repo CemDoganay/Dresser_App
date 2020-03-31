@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.example.dresser_app.GeneratedCombination;
 import com.example.dresser_app.R;
@@ -24,7 +23,7 @@ public class DressMeFragment extends Fragment{
     public static final String CURRENT_PHOTO_NAME = "com.example.android.Ideas.extra.CURRENT_PHOTO_NAME";
     public static final String CURRENT_PHOTO_URI = "com.example.android.Ideas.extra.CURRENT_PHOTO_URI";
 
-    private Button next, gallery;
+    private Button  gallery;
     private String nameOfPic, picURI;
     //private ImageView photoFromGallery;
     static final int REQUEST_GALLERY = 1;
@@ -60,21 +59,6 @@ public class DressMeFragment extends Fragment{
             }
         });
 
-
-        next = (Button) rootView.findViewById(R.id.button_next_ideas);
-        next.setOnClickListener(new View.OnClickListener() {
-            /**
-             * Currently you need to push the next button right after you choose a piece of clothing
-             * from the Dress Me button. This will then go to another page to show which clothing
-             * matches the selected clothing.
-             * @param combination
-             */
-            @Override
-            public void onClick(View combination) {
-                Intent intent = new Intent(getActivity(), GeneratedCombination.class);
-                startActivity(intent);
-            }
-        });
         return rootView;
     }
 

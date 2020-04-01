@@ -11,7 +11,6 @@ import android.view.ViewParent;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -64,26 +63,6 @@ public class FragmentTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        ViewInteraction appCompatSpinner = onView(
-                allOf(withId(R.id.spinner_color),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatSpinner.perform(click());
-
-        ViewInteraction checkedTextView = onView(
-                allOf(withId(android.R.id.text1),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                                        0),
-                                0),
-                        isDisplayed()));
-        checkedTextView.check(matches(isDisplayed()));
-
         DataInteraction appCompatCheckedTextView = onData(anything())
                 .inAdapterView(childAtPosition(
                         withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
@@ -91,15 +70,6 @@ public class FragmentTest {
                 .atPosition(2);
         appCompatCheckedTextView.perform(click());
 
-        ViewInteraction textView = onView(
-                allOf(withId(android.R.id.text1), withText("GREEN"),
-                        childAtPosition(
-                                allOf(withId(R.id.spinner_color),
-                                        childAtPosition(
-                                                IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class),
-                                                2)),
-                                0),
-                        isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(

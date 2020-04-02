@@ -39,7 +39,7 @@ public class Ideas_Test {
 
     @Test
     public void ideas_Test() {
-        ViewInteraction appCompatButton = onView(
+        /*ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.ideas_button), withText("Give Me Ideas"),
                         childAtPosition(
                                 childAtPosition(
@@ -47,7 +47,7 @@ public class Ideas_Test {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatButton.perform(click());
+        appCompatButton.perform(click());*/
 
         ViewInteraction appCompatSpinner = onView(
                 allOf(withId(R.id.spinner_color),
@@ -86,7 +86,7 @@ public class Ideas_Test {
                                 0),
                         isDisplayed()));
         //textView.check(matches(withText("GREEN")));
-
+/*
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.button_generate), withText("Generate"),
                         childAtPosition(
@@ -105,7 +105,7 @@ public class Ideas_Test {
                                         0),
                                 2),
                         isDisplayed()));
-        button.check(matches(isDisplayed()));
+        button.check(matches(isDisplayed()));*/
     }
 
     private static Matcher<View> childAtPosition(
